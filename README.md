@@ -78,6 +78,8 @@ page can be chosen by including the page name after the command (e.g.
 - [ ] Create pipelines
   - [ ] Lint, and, enforce standards, etc. on MRs.
   - [ ] On tags, I want to build the binary and store it in the package registry.
+- [ ] kch
+  - [ ] Handle error when there are no contexts configured.
 
 ## Versioning
 
