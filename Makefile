@@ -30,6 +30,11 @@ install: ## Install your project onto your machine
 test: ## Run the tests of the project
 	$(GOTEST) -v -race ./...
 
+## Release:
+release: ## Build binaries for different OS types
+	GOOS=windows GOARCH=amd64 go build -o bin/acli-amd64.exe .
+	GOOS=darwin GOARCH=arm64 go build -o bin/acli-macos-arm64 .
+	GOOS=linux GOARCH=386 go build -o bin/acli-linux-386 .
 
 ## Help:
 help: ## Show this help.
