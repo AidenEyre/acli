@@ -47,6 +47,10 @@ func SetKubeContextWithPrompt() error {
 		contexts = append(contexts, ctx)
 	}
 
+	if len(contexts) == 0 {
+		return fmt.Errorf("failed to find configured contexts, nothing to prompt")
+	}
+
 	contexts = common.ColorSliceStringGreen(contexts, currentContext)
 	selectedContext, err := promptContext(contexts)
 	if err == promptui.ErrInterrupt {
