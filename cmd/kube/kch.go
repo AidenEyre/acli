@@ -29,7 +29,7 @@ acli kch -r deploy
 # namespace
 acli kch -r po -n kube-system
 		`,
-		Version:      "2.0.0",
+		Version:      "2.1.0",
 		RunE:         runE,
 		SilenceUsage: true,
 	}

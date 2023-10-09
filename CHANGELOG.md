@@ -11,12 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Subcommand`| `Version` | `Explanation...`
 ```
 
-## [1.2.0]
+## [1.2.1]
 
 ### Added
 
 ### Changed
 
 ### Fixed
+- `kch` | `2.1.0` | Fixed issue where `acli kch` would always use
+  `~/.kube/config` when setting context.
 
 ### Removed

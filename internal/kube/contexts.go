@@ -14,11 +14,14 @@ import (
 	"k8s.io/client-go/tools/clientcmd/api"
 )
 
-var kubeConfig *api.Config
+var (
+	kubeConfig     *api.Config
+	kubeConfigPath string
+)
 
 func init() {
 	var err error
-	kubeConfig, err = loadConfig()
+	kubeConfig, kubeConfigPath, err = loadConfig()
 	if err != nil {
 		log.Fatalf("failed to initialize K8s API config:: %v", err)
 	}
@@ -27,7 +30,7 @@ func init() {
 // SetKubeContext takes in the context name and sets it as the current kube context.
 func SetKubeContext(context string) error {
 	kubeConfig.CurrentContext = context
-	err := clientcmd.WriteToFile(*kubeConfig, clientcmd.RecommendedHomeFile)
+	err := clientcmd.WriteToFile(*kubeConfig, kubeConfigPath)
 	if err != nil {
 		return err
 	}
@@ -64,18 +67,23 @@ func SetKubeContextWithPrompt() error {
 	return nil
 }
 
-// loadConfig returns a Kubernetes client API config.
-func loadConfig() (*api.Config, error) {
+// loadConfig returns a Kubernetes client API config and the defined config
+// path
+func loadConfig() (*api.Config, string, error) {
 	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
 	overrides := &clientcmd.ConfigOverrides{}
 
 	clientConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, overrides)
 	apiConfig, err := clientConfig.RawConfig()
 	if err != nil {
-		return nil, err
+		return nil, "", err
 	}
 
-	return &apiConfig, nil
+	// Use the first file if multiple exist, as it's the highest precedence
+	if len(loadingRules.Precedence) == 0 {
+		return nil, "", fmt.Errorf("failed to find config file")
+	}
+	return &apiConfig, loadingRules.Precedence[0], nil
 }
 
 func promptContext(contexts []string) (string, error) {
