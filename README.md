@@ -66,6 +66,7 @@ page can be chosen by including the page name after the command (e.g.
 - [ ] Allow users to use the resource flag with no arguments to open K9s to a
   default
 - [ ] Implement an easy way to distribute this (brew, etc).
+- [ ] Handle context deadline exceeded (no connection) when trying to connect to cluster (k9s).
 - [ ] Config
   - [ ] Allow users to specify default kubeconfig path to use.
   - [ ] Allow users to define default namespace for `kch` namespace flag.
