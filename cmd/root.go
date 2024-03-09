@@ -7,15 +7,23 @@ import (
 
 	help "github.com/aideneyre/acli/cmd/help"
 	kube "github.com/aideneyre/acli/cmd/kube"
+	"github.com/aideneyre/acli/internal/config"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
+
+var AcliConfig viper.Viper
 
 var RootCmd = &cobra.Command{
 	Use:     "acli [flags] [options]",
 	Short:   "Aiden CLI - quality of life commands",
-	Version: "1.2.1",
+	Version: "1.3.0",
 
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		err := config.Initialize()
+		return err
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("you are using acli version %s\n\n", cmd.Version)
 		cmd.Help()
