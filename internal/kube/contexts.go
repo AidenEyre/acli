@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"slices"
 	"sort"
 
 	"github.com/aideneyre/acli/internal/common"
@@ -53,7 +54,9 @@ func SetKubeContextWithPrompt() error {
 		return nil
 	}
 
-	contexts = common.ColorSliceStringGreen(contexts, currentContext)
+	if slices.Contains(contexts, currentContext) {
+		contexts = common.ColorSliceStringGreen(contexts, currentContext)
+	}
 	selectedContext, err := promptContext(contexts)
 	if err == promptui.ErrInterrupt {
 		fmt.Print("\033[u\033[J") // Clear the terminal
