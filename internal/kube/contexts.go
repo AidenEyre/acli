@@ -48,7 +48,8 @@ func SetKubeContextWithPrompt() error {
 	}
 
 	if len(contexts) == 0 {
-		return fmt.Errorf("failed to find configured contexts, nothing to prompt")
+		fmt.Println("no configured configs found, exiting")
+		return nil
 	}
 
 	contexts = common.ColorSliceStringGreen(contexts, currentContext)
