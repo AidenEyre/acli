@@ -38,6 +38,8 @@ acli kch -r po -n kube-system
 func init() {
 	KubeChangeCmd.Flags().StringVarP(&resourceType, "resource", "r", "", "Specify the resource type")
 	KubeChangeCmd.Flags().StringVarP(&namespace, "namespace", "n", "default", "Specify the namespace")
+	KubeChangeCmd.Flags().Lookup("resource").NoOptDefVal = "pod"
+	KubeChangeCmd.Flags().Lookup("namespace").NoOptDefVal = "default"
 }
 
 // runE calls sets current kube context with a prompt or a specified context.
@@ -54,7 +56,7 @@ func runE(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("unable to set context: %w", err)
 	}
 
-	if resourceType != "" {
+	if resourceType != "" || namespace != "" {
 		err = kube.RunK9s(resourceType, namespace)
 	}
 	if err != nil {
