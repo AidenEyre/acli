@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Subcommand`| `Version` | `Explanation...`
 ```
 
+## [1.2.0]
+
+### Added
+
+### Changed
+
+### Fixed
+- `kch` | `2.2.0` | Don't error when there are no contexts configured.
+- `kch` | `2.2.0` | Exit program when CLI exits early (don't open K9s on
+  ctrl+c).
+- `kch` | `2.2.0` | Handle current context not existing in available contexts.
+- `kch` | `2.2.0` | Allow `-n`/`-r` flags without a value to open K9s without
+  defining a resource/namespace.
+
+### Removed
+
 ## [1.2.1]
 
 ### Added
