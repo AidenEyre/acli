@@ -6,6 +6,7 @@ import (
 	"os"
 
 	cliconfigsetup "github.com/aideneyre/acli/cmd/config"
+	"github.com/aideneyre/acli/cmd/connect"
 	help "github.com/aideneyre/acli/cmd/help"
 	kube "github.com/aideneyre/acli/cmd/kube"
 
@@ -28,6 +29,7 @@ func init() {
 	RootCmd.AddCommand(kube.KubeChangeCmd)
 	RootCmd.AddCommand(help.CheatSheet)
 	RootCmd.AddCommand(cliconfigsetup.ConfigCmd)
+	RootCmd.AddCommand(connect.ConnectCmd)
 }
 
 // Execute runs the command and its subcommands, returning an error

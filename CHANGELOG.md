@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   configuration.
 - `config` | `0.1.0` | Added `config` command to open an interactive prompt to
   configure persistent CLI configurations. Added the following configurations:
+- `connect` | `0.1.0` | Added `connect` command to connect to different servers
+  using SSH and a pre-defined set of servers that are modified with the config
+  command.
 
 ### Changed
 - `kch` | `2.2.0` | If opening K9s without specifying resource/namespace, use
