@@ -122,6 +122,8 @@ We use [SemVer](SemVer) for versioning on the root command and each sub-command.
 
 We use [GoReleaser](https://goreleaser.com/) to distribute the CLI.
 
+Currently deploying packages to: `Homebrew` and `Choclatey`.
+
 ## Authors
 
 - Aiden Eyre

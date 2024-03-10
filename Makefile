@@ -1,7 +1,7 @@
 GOCMD=go
 GOTEST=$(GOCMD) test
 BINARY_NAME=acli
-VERSION?=1.2.0
+VERSION?=1.4.0
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
