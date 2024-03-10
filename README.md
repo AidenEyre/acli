@@ -91,7 +91,7 @@ kch:
 
 ### Connect
 
-![connect-demo](https://media.giphy.com/media/swYUWOADqUfzA1NzNN/giphy.gif)
+![connect-demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXp4dzRtcTMzc3JlMWFweml0bmt1aGl1cWt5YTU0NWxidXkwMDFpNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mSehGiCOWTlWWRHNWN/giphy.gif)
 
 The `connect` command allows you to connect to remote servers using SSH. This
 command relies on set configs through the `config` command. If you just run,

@@ -8,7 +8,8 @@ import (
 
 func PromptForInput(label string) (string, error) {
 	prompt := promptui.Prompt{
-		Label: label,
+		Label:  label,
+		Stdout: &BellSkipper{},
 	}
 
 	result, err := prompt.Run()
@@ -21,8 +22,10 @@ func PromptForInput(label string) (string, error) {
 
 func PromptForInputWithDefault(label, defaultValue string) (string, error) {
 	prompt := promptui.Prompt{
-		Label:   label,
-		Default: defaultValue,
+		Label:     label,
+		Default:   defaultValue,
+		Stdout:    &BellSkipper{},
+		AllowEdit: true,
 	}
 
 	result, err := prompt.Run()
