@@ -15,7 +15,7 @@ import (
 var RootCmd = &cobra.Command{
 	Use:     "acli [flags] [options]",
 	Short:   "Aiden CLI - quality of life commands",
-	Version: "1.3.0",
+	Version: "1.4.0",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("you are using acli version %s\n\n", cmd.Version)
 		cmd.Help()

@@ -13,6 +13,7 @@ commands to make your life easier on the command line.
     - [Connect](#connect)
   - [Roadmap](#roadmap)
   - [Versioning](#versioning)
+  - [Distributing](#distributing)
   - [Authors](#authors)
 
 ## Installation
@@ -102,9 +103,10 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 
 ## Roadmap
 
-- [ ] Implement an easy way to distribute this (brew, etc).
 - [ ] Config
   - [ ] Allow users to specify default kubeconfig path to use.
+- [ ] kch
+  - [ ] If K9s isn't installed, allow the `-n`/`-r` flags to just run a get on the resources.
 - [ ] tests
   - [ ] Make more tests.
   - [ ] Refactor kube package to better handle unit tests.
@@ -115,6 +117,12 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 ## Versioning
 
 We use [SemVer](SemVer) for versioning on the root command and each sub-command.
+
+## Distributing
+
+We use [GoReleaser](https://goreleaser.com/) to distribute the CLI.
+
+Currently deploying packages to: `Homebrew` and `Choclatey`.
 
 ## Authors
 
