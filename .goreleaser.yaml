@@ -64,8 +64,8 @@ brews:
    license: MIT
    folder: Formula
    repository:
-    owner: Aiden Eyre
-    name: homebrew-tap
+    owner: AidenEyre
+    name: homebrew-aideneyre
 
 chocolateys:
   - name: acli
