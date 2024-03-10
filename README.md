@@ -48,12 +48,17 @@ acli connect
 
 ### kch
 
+![kch-demo](https://giphy.com/gifs/5yM9Zl2YAGCUbsouql)
+
 Kube change (kch) is a command that can be run to set the current context. The
 command provides an interactive selection prompt or the context can be
 directly set by adding it after the command (e.g. `acli kch my-cluster`). The
 `-r`/`--resource` flag can be used to open K9s after setting the contents to the
 specified resource. The `-n`/`--namespace` flag can be used to specify the
 namespace used when opening K9s (default namespace: `default`).
+
+> **Note**
+> Much of this functionality assumes you have K9s installed and use it.
 
 ### Config
 
@@ -85,6 +90,8 @@ kch:
 ```
 
 ### Connect
+
+![connect-demo](https://giphy.com/gifs/swYUWOADqUfzA1NzNN)
 
 The `connect` command allows you to connect to remote servers using SSH. This
 command relies on set configs through the `config` command. If you just run,
