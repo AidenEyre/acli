@@ -26,10 +26,12 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
-      - name: install cosign
-        uses: sigstore/cosign-installer@main
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
         with:
-          cosign-release: 'v1.3.1'
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
@@ -38,7 +40,7 @@ jobs:
           args: release --snapshot --clean --skip=announce --skip=chocolatey
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COSIGN_EXPERIMENTAL: 1
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
 
   goreleaser-choco:
     name: Release Chocolatey
@@ -53,10 +55,12 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
-      - name: install cosign
-        uses: sigstore/cosign-installer@main
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
         with:
-          cosign-release: 'v1.3.1'
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser for Chocolatey
         uses: goreleaser/goreleaser-action@v5
         with:
@@ -64,4 +68,4 @@ jobs:
           args: release --snapshot --clean --skip=announce --skip=homebrew
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COSIGN_EXPERIMENTAL: 1
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}

@@ -9,14 +9,6 @@
 project_name: acli
 version: 1
 
-source:
-  enabled: true
-signs:
-  - cmd: cosign
-    signature: "${artifact}.sig"
-    args: ["sign-blob", "--oidc-issuer=https://token.actions.githubusercontent.com", "--output=${signature}", "${artifact}"]
-    artifacts: all
-
 before:
   hooks:
     - go mod tidy
@@ -43,6 +35,22 @@ archives:
     format_overrides:
       - goos: windows
         format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+signs:
+  - artifacts: checksum
+    cmd: gpg2
+    args:
+      - "--batch"
+      - "-u"
+      - "{{ .Env.GPG_FINGERPRINT }}"
+      - "--output"
+      - "${signature}"
+      - "--detach-sign"
+      - "${artifact}"
 
 changelog:
   sort: asc
