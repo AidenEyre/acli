@@ -58,6 +58,10 @@ func GetBool(key string) bool {
 	return viper.GetBool(key)
 }
 
+func UnmarshalConfig(key any) error {
+	return viper.Unmarshal(key)
+}
+
 // Set writes a config value to the acli config file.
 func Set(key string, value any) error {
 	viper.Set(key, value)

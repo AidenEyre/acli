@@ -90,33 +90,28 @@ func promptAlwaysOpenK9s() error {
 		config.Set("kch.alwaysOpenK9s", false)
 	}
 
+	fmt.Println("Always open K9s set successfully.")
 	return nil
 }
 
 func promptDefaultResourceType() error {
-	prompt := promptui.Prompt{
-		Label: "Set default resource type",
-	}
-
-	choice, err := prompt.Run()
+	resourceType, err := prompt.PromptForInput("Enter default resource type")
 	if err != nil {
-		return fmt.Errorf("unable to prompt for default resource type: %w", err)
+		return fmt.Errorf("unable to prompt for resource type: %w", err)
 	}
 
-	config.Set("kch.defaults.Resource", choice)
+	config.Set("kch.defaults.Resource", resourceType)
+	fmt.Println("Default resource type set successfully.")
 	return nil
 }
 
 func promptDefaultNamespace() error {
-	prompt := promptui.Prompt{
-		Label: "Set default namespace",
-	}
-
-	choice, err := prompt.Run()
+	namespace, err := prompt.PromptForInput("Enter default namespace name")
 	if err != nil {
-		return fmt.Errorf("unable to prompt for default namespace: %w", err)
+		return fmt.Errorf("unable to prompt for namespace name: %w", err)
 	}
 
-	config.Set("kch.defaults.namespace", choice)
+	config.Set("kch.defaults.namespace", namespace)
+	fmt.Println("Default namespace set successfully.")
 	return nil
 }

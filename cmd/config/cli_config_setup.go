@@ -3,6 +3,7 @@ package cliconfigsetup
 import (
 	"fmt"
 
+	"github.com/aideneyre/acli/internal/config"
 	"github.com/aideneyre/acli/internal/config/configurator"
 
 	"github.com/spf13/cobra"
@@ -12,7 +13,7 @@ var (
 	ConfigCmd = &cobra.Command{
 		Use:   "config [flags]",
 		Short: "Configure acli settings.",
-		Long:  "Opens an interactive prompt to configure acli settings for select subcommands: kch.",
+		Long:  "Opens an interactive prompt to configure acli settings for select subcommands: kch, connect.",
 		Example: `
 # Open the configuration prompt
 acli config
@@ -25,7 +26,12 @@ acli config
 
 // runE calls the setup function in the config package.
 func runE(cmd *cobra.Command, args []string) error {
-	err := configurator.RunSetup()
+	err := config.Initialize()
+	if err != nil {
+		return fmt.Errorf("unable to initialize acli: %w", err)
+	}
+
+	err = configurator.RunSetup()
 	if err != nil {
 		return fmt.Errorf("unable to configure acli: %w", err)
 	}
