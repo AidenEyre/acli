@@ -73,10 +73,16 @@ jobs:
             New-Item -ItemType SymbolicLink -Path $gpg2Path -Target $gpgPath
           }
         shell: powershell
-      - name: Manually import GPG key (Windows)
-        run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-          echo "GPG_FINGERPRINT=$(gpg --list-secret-keys --with-colons | grep sec -A 1 | grep fpr | cut -d: -f10)" >> $GITHUB_ENV
+      # - name: Manually import GPG key (Windows)
+      #   run: |
+      #     echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+      #     echo "GPG_FINGERPRINT=$(gpg --list-secret-keys --with-colons | grep sec -A 1 | grep fpr | cut -d: -f10)" >> $GITHUB_ENV
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser for Chocolatey
         uses: goreleaser/goreleaser-action@v5
         with:
@@ -84,4 +90,5 @@ jobs:
           args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=homebrew' || 'release --clean --skip=announce --skip=homebrew' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GPG_FINGERPRINT: ${{ env.GPG_FINGERPRINT }}
+          # GPG_FINGERPRINT: ${{ env.GPG_FINGERPRINT }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
