@@ -16,6 +16,8 @@ func Initialize() error {
 	}
 	filePath := filepath.Join(homedir, ".acli")
 
+	viper.SetDefault("kch.defaults.resource", "pod")
+	viper.SetDefault("kch.defaults.namespace", "default")
 	viper.SetConfigName(".acli")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(homedir)
@@ -52,11 +54,16 @@ func GetStringSlice(key string) []string {
 	return viper.GetStringSlice(key)
 }
 
+func GetBool(key string) bool {
+	return viper.GetBool(key)
+}
+
 // Set writes a config value to the acli config file.
-func Set(key string, value string) {
+func Set(key string, value any) error {
 	viper.Set(key, value)
 	err := viper.WriteConfig()
 	if err != nil {
-		panic(fmt.Errorf("fatal error writing viper config file: %w", err))
+		return fmt.Errorf("fatal error writing viper config file: %w", err)
 	}
+	return nil
 }

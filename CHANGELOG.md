@@ -16,16 +16,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `acli` | `1.3.0` | Added `~/.acli.yaml` file managed by viper for persistent
   configuration.
+- `config` | `0.1.0` | Added `config` command to open an interactive prompt to
+  configure persistent CLI configurations. Added the following configurations:
 
 ### Changed
+- `kch` | `2.2.0` | If opening K9s without specifying resource/namespace, use
+  defaults defined in `~/.acli` configuration file.
+- `kch` | `2.2.0` | If "kch.alwaysopenk9s" is set true in the `~/.acli`
+  configuration file, K9s will always open by default.
 
 ### Fixed
 - `kch` | `2.2.0` | Don't error when there are no contexts configured.
 - `kch` | `2.2.0` | Exit program when CLI exits early (don't open K9s on
   ctrl+c).
 - `kch` | `2.2.0` | Handle current context not existing in available contexts.
-- `kch` | `2.2.0` | Allow `-n`/`-r` flags without a value to open K9s without
-  defining a resource/namespace.
 
 ### Removed
 
