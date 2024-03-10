@@ -3,6 +3,7 @@ package configurator
 import (
 	"fmt"
 
+	connectConfig "github.com/aideneyre/acli/internal/config/configurator/connect"
 	kchconfig "github.com/aideneyre/acli/internal/config/configurator/kch"
 
 	"github.com/aideneyre/acli/internal/prompt"
@@ -12,21 +13,40 @@ import (
 var (
 	subcommands = []string{
 		"kch",
+		"connect",
+		"exit",
 	}
 )
 
 func RunSetup() error {
+	exit := false
+	var err error
+	for !exit {
+		exit, err = runPrompt()
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func runPrompt() (bool, error) {
 	subcommand, err := promptSubcommands()
 	if err != nil {
-		return fmt.Errorf("unable to prompt for subcommand: %w", err)
+		return true, fmt.Errorf("unable to prompt for subcommand: %w", err)
 	}
 
 	switch subcommand {
 	case "kch":
 		err := kchconfig.Configure()
-		return err
+		return false, err
+	case "connect":
+		err := connectConfig.Configure()
+		return false, err
+	case "exit":
+		return true, nil
 	default:
-		return fmt.Errorf("subcommand %s not found", subcommand)
+		return true, fmt.Errorf("subcommand %s not found", subcommand)
 	}
 }
 
