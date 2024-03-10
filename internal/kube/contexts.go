@@ -51,7 +51,7 @@ func SetKubeContextWithPrompt() error {
 
 	if len(contexts) == 0 {
 		fmt.Println("no configured configs found, exiting")
-		return nil
+		os.Exit(0)
 	}
 
 	if slices.Contains(contexts, currentContext) {
