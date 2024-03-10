@@ -36,7 +36,7 @@ jobs:
           version: latest
           args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=chocolatey' || 'release --clean --skip=announce --skip=chocolatey' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
 
   goreleaser-choco:
@@ -73,10 +73,6 @@ jobs:
             New-Item -ItemType SymbolicLink -Path $gpg2Path -Target $gpgPath
           }
         shell: powershell
-      # - name: Manually import GPG key (Windows)
-      #   run: |
-      #     echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-      #     echo "GPG_FINGERPRINT=$(gpg --list-secret-keys --with-colons | grep sec -A 1 | grep fpr | cut -d: -f10)" >> $GITHUB_ENV
       - name: Import GPG key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
@@ -89,6 +85,5 @@ jobs:
           version: latest
           args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=homebrew' || 'release --clean --skip=announce --skip=homebrew' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # GPG_FINGERPRINT: ${{ env.GPG_FINGERPRINT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
