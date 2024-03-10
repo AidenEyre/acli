@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os/exec"
 
 	"github.com/aideneyre/acli/internal/config"
 	"github.com/aideneyre/acli/internal/kube"
@@ -31,7 +32,7 @@ acli kch -r deploy
 # namespace
 acli kch -r po -n kube-system
 		`,
-		Version:      "2.2.0",
+		Version:      "2.2.1",
 		RunE:         runE,
 		SilenceUsage: true,
 	}
@@ -62,6 +63,12 @@ func runE(cmd *cobra.Command, args []string) error {
 
 	// Stop here if not opening k9s
 	if resourceType == "" && namespace == "" && !config.GetBool("kch.alwaysopenk9s") {
+		return nil
+	}
+
+	_, err = exec.LookPath("k9s")
+	if err != nil {
+		fmt.Println("k9s is not installed or not found in $PATH. You must install k9s to open it. For installation instructions, visit https://k9scli.io/topics/install/")
 		return nil
 	}
 

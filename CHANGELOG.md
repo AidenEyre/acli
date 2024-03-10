@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Subcommand`| `Version` | `Explanation...`
 ```
 
+## [1.4.0]
+
+### Added
+
+### Changed
+
+### Fixed
+- `kch` | `2.2.1` | Fully exit program if no kubeconfig is found.
+- `kch` | `2.2.1` | Gracefully handle K9s not being installed.
+
+### Removed
+
 ## [1.3.0]
 
 ### Added

@@ -105,6 +105,8 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 - [ ] Implement an easy way to distribute this (brew, etc).
 - [ ] Config
   - [ ] Allow users to specify default kubeconfig path to use.
+- [ ] kch
+  - [ ] If K9s isn't installed, allow the `-n`/`-r` flags to just run a get on the resources.
 - [ ] tests
   - [ ] Make more tests.
   - [ ] Refactor kube package to better handle unit tests.
