@@ -58,7 +58,10 @@ jobs:
           [Environment]::SetEnvironmentVariable("Path", $env:PATH, "Machine")
       - name: Install GnuPG
         run: |
-          choco install --verbose GnuPG
+          choco install --verbose gpg4win
+      - name: Finish gpg install
+        run: |
+          echo "C:\Program Files (x86)\Gpg4win\..\GnuPG\bin" >> $env:GITHUB_PATH
       - name: Import GPG key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v6
