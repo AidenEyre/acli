@@ -48,7 +48,7 @@ acli connect
 
 ### kch
 
-![kch-demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWs3MjhvNDRmbTl3MmV0cHhwdWFndDM0emR3cjJxc3U4bTdkZmVldiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5yM9Zl2YAGCUbsouql/giphy.gif)
+![kch-demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTN4eHBoZDVyMHB6ejkxdmtmOTZudzRlbGg0OW9xYWQ5MXhlZmszZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9Cbc3DJGC074hUqb3E/giphy.gif)
 
 Kube change (kch) is a command that can be run to set the current context. The
 command provides an interactive selection prompt or the context can be
