@@ -34,7 +34,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --rm-dist --skip=announce --skip=chocolatey' || 'release --rm-dist --skip=announce --skip=chocolatey' }}
+          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=chocolatey' || 'release --clean --skip=announce --skip=chocolatey' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
@@ -52,6 +52,10 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
+      - name: Prepare environment for Chocolatey
+        run: |
+          $env:PATH = "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\bin"
+          [Environment]::SetEnvironmentVariable("Path", $env:PATH, "Machine")
       - name: Install GnuPG
         run: |
           choco install --verbose GnuPG
@@ -65,7 +69,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --rm-dist --skip=announce --skip=homebrew' || 'release --rm-dist --skip=announce --skip=homebrew' }}
+          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=homebrew' || 'release --clean --skip=announce --skip=homebrew' }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
