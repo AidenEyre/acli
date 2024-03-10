@@ -9,6 +9,14 @@
 project_name: acli
 version: 1
 
+source:
+  enabled: true
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sig"
+    args: ["sign-blob", "--oidc-issuer=https://token.actions.githubusercontent.com", "--output=${signature}", "${artifact}"]
+    artifacts: all
+
 before:
   hooks:
     - go mod tidy
@@ -63,3 +71,4 @@ chocolateys:
     docs_url: https://github.com/AidenEyre/acli/blob/main/README.md
     release_notes: https://github.com/AidenEyre/acli/releases/tag/v{{ .Version }}
     owners: Aiden Eyre
+    authors: Aiden Eyre

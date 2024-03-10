@@ -15,35 +15,34 @@ permissions:
   # issues: write
 
 jobs:
-  # goreleaser-brew:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-  #     - name: Set up Go
-  #       uses: actions/setup-go@v5
-  #       with:
-  #         go-version: stable
-  #     # More assembly might be required: Docker logins, GPG, etc.
-  #     # It all depends on your needs.
-  #     - name: Run GoReleaser
-  #       uses: goreleaser/goreleaser-action@v5
-  #       with:
-  #         # either 'goreleaser' (default) or 'goreleaser-pro'
-  #         distribution: goreleaser
-  #         version: latest
-  #         # args: release --clean
-  #         args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=chocolatey
-  #       # env:
-  #       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         # Your GoReleaser Pro key, if you are using the 'goreleaser-pro' distribution
-  #         # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
+  goreleaser-brew:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: install cosign
+        uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: 'v1.3.1'
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean --skip=announce --skip=sign --skip=chocolatey
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COSIGN_EXPERIMENTAL: 1
 
   goreleaser-choco:
     name: Release Chocolatey
-    # needs: goreleaser-brew
+    needs: goreleaser-brew
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -54,10 +53,15 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
+      - name: install cosign
+        uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: 'v1.3.1'
       - name: Run GoReleaser for Chocolatey
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=homebrew
+          args: release --clean --skip=announce --skip=sign --skip=homebrew
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COSIGN_EXPERIMENTAL: 1
