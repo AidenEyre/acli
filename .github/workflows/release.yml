@@ -35,7 +35,7 @@ jobs:
           distribution: goreleaser
           version: latest
           # args: release --clean
-          args: release --skip=publish --clean --skip=announce --skip=sign --skip=chocolatey
+          args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=chocolatey
         # env:
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Your GoReleaser Pro key, if you are using the 'goreleaser-pro' distribution
@@ -63,6 +63,6 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          args: release --skip=publish --clean --skip=announce --skip=sign --skip=homebrew
+          args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=homebrew
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
