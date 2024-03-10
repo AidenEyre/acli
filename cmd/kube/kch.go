@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/aideneyre/acli/internal/config"
 	"github.com/aideneyre/acli/internal/kube"
 
 	"github.com/spf13/cobra"
@@ -14,6 +15,7 @@ var (
 	KubeChangeCmd = &cobra.Command{
 		Use:   "kch [flags] [context]",
 		Short: "Change kube context.",
+		Long:  "Change kube context. If kch has been configured, may open k9s by default to a specific resource type and namespace.",
 		Example: `
 # Set context with flag
 acli kch CONTEXT_NAME
@@ -29,7 +31,7 @@ acli kch -r deploy
 # namespace
 acli kch -r po -n kube-system
 		`,
-		Version:      "2.1.0",
+		Version:      "2.2.0",
 		RunE:         runE,
 		SilenceUsage: true,
 	}
@@ -37,14 +39,18 @@ acli kch -r po -n kube-system
 
 func init() {
 	KubeChangeCmd.Flags().StringVarP(&resourceType, "resource", "r", "", "Specify the resource type")
-	KubeChangeCmd.Flags().StringVarP(&namespace, "namespace", "n", "default", "Specify the namespace")
+	KubeChangeCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "Specify the namespace")
 }
 
 // runE calls sets current kube context with a prompt or a specified context.
 func runE(cmd *cobra.Command, args []string) error {
 	var err error
+	err = config.Initialize()
+	if err != nil {
+		return fmt.Errorf("unable to initialize config: %w", err)
+	}
 
-	if len(args) > 0 {
+	if len(args) > cmd.Flags().NFlag() {
 		desiredContext := args[0]
 		err = kube.SetKubeContext(desiredContext)
 	} else {
@@ -54,12 +60,21 @@ func runE(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("unable to set context: %w", err)
 	}
 
-	if resourceType != "" {
-		err = kube.RunK9s(resourceType, namespace)
+	// Stop here if not opening k9s
+	if resourceType == "" && namespace == "" && !config.GetBool("kch.alwaysopenk9s") {
+		return nil
 	}
+
+	if namespace == "" {
+		namespace = config.GetString("kch.defaults.namespace")
+	}
+	if resourceType == "" {
+		resourceType = config.GetString("kch.defaults.resource")
+	}
+
+	err = kube.RunK9s(resourceType, namespace)
 	if err != nil {
 		return fmt.Errorf("failed to run K9s: %+w", err)
 	}
-
 	return nil
 }

@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	help "github.com/aideneyre/acli/cmd/help"
+	cliconfigsetup "github.com/aideneyre/acli/cmd/config"
+	"github.com/aideneyre/acli/cmd/connect"
 	kube "github.com/aideneyre/acli/cmd/kube"
 
 	"github.com/spf13/cobra"
@@ -14,8 +15,7 @@ import (
 var RootCmd = &cobra.Command{
 	Use:     "acli [flags] [options]",
 	Short:   "Aiden CLI - quality of life commands",
-	Version: "1.2.1",
-
+	Version: "1.3.0",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("you are using acli version %s\n\n", cmd.Version)
 		cmd.Help()
@@ -26,7 +26,8 @@ var RootCmd = &cobra.Command{
 // via the CLI
 func init() {
 	RootCmd.AddCommand(kube.KubeChangeCmd)
-	RootCmd.AddCommand(help.CheatSheet)
+	RootCmd.AddCommand(cliconfigsetup.ConfigCmd)
+	RootCmd.AddCommand(connect.ConnectCmd)
 }
 
 // Execute runs the command and its subcommands, returning an error

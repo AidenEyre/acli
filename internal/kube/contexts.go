@@ -4,6 +4,8 @@ package kube
 import (
 	"fmt"
 	"log"
+	"os"
+	"slices"
 	"sort"
 
 	"github.com/aideneyre/acli/internal/common"
@@ -48,15 +50,18 @@ func SetKubeContextWithPrompt() error {
 	}
 
 	if len(contexts) == 0 {
-		return fmt.Errorf("failed to find configured contexts, nothing to prompt")
+		fmt.Println("no configured configs found, exiting")
+		return nil
 	}
 
-	contexts = common.ColorSliceStringGreen(contexts, currentContext)
+	if slices.Contains(contexts, currentContext) {
+		contexts = common.ColorSliceStringGreen(contexts, currentContext)
+	}
 	selectedContext, err := promptContext(contexts)
 	if err == promptui.ErrInterrupt {
 		fmt.Print("\033[u\033[J") // Clear the terminal
 		fmt.Println("CLI exited early!")
-		return nil
+		os.Exit(0)
 	}
 	if err != nil {
 		return fmt.Errorf("unable to get user context selection: %w", err)
