@@ -59,15 +59,12 @@ jobs:
       - name: Install GnuPG
         run: |
           choco install --verbose gpg4win
-      - name: Finish gpg install
+      - name: Locate GPG and Update PATH
         run: |
-          echo "C:\Program Files (x86)\Gpg4win\..\GnuPG\bin" >> $env:GITHUB_PATH
-      # - name: Import GPG key
-      #   id: import_gpg
-      #   uses: crazy-max/ghaction-import-gpg@v6
-      #   with:
-      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      #     passphrase: ${{ secrets.PASSPHRASE }}
+          $gpgPath = Get-Command gpg.exe | Select-Object -ExpandProperty Source
+          $gpgDir = Split-Path $gpgPath
+          echo "GPG_DIR=$gpgDir" >> $GITHUB_ENV
+          echo "$gpgDir" >> $env:GITHUB_PATH
       - name: Manually import GPG key (Windows)
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
