@@ -35,7 +35,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --snapshot --clean --skip=announce --skip=sign --skip=chocolatey
+          args: release --snapshot --clean --skip=announce --skip=chocolatey
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COSIGN_EXPERIMENTAL: 1
@@ -61,7 +61,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          args: release --snapshot --clean --skip=announce --skip=sign --skip=homebrew
+          args: release --snapshot --clean --skip=announce --skip=homebrew
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COSIGN_EXPERIMENTAL: 1
