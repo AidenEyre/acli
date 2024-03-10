@@ -1,10 +1,13 @@
 package cliconfigsetup
 
 import (
+	"errors"
 	"fmt"
+	"os"
 
 	"github.com/aideneyre/acli/internal/config"
 	"github.com/aideneyre/acli/internal/config/configurator"
+	"github.com/manifoldco/promptui"
 
 	"github.com/spf13/cobra"
 )
@@ -32,6 +35,11 @@ func runE(cmd *cobra.Command, args []string) error {
 	}
 
 	err = configurator.RunSetup()
+	if errors.Is(err, promptui.ErrInterrupt) {
+		fmt.Print("\033[u\033[J") // Clear the terminal
+		fmt.Println("CLI exited early!")
+		os.Exit(0)
+	}
 	if err != nil {
 		return fmt.Errorf("unable to configure acli: %w", err)
 	}

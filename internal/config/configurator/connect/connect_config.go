@@ -1,7 +1,9 @@
 package connectConfig
 
 import (
+	"errors"
 	"fmt"
+	"os"
 
 	"github.com/aideneyre/acli/internal/config"
 	"github.com/aideneyre/acli/internal/prompt"
@@ -55,6 +57,11 @@ func Configure() error {
 
 	for !exit {
 		exit, err = runPrompt()
+		if errors.Is(err, promptui.ErrInterrupt) {
+			fmt.Print("\033[u\033[J") // Clear the terminal
+			fmt.Println("CLI exited early!")
+			os.Exit(0)
+		}
 	}
 	if err != nil {
 		return err

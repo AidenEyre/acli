@@ -23,7 +23,7 @@ func promptAddNewSSHAlias() error {
 	if err != nil {
 		return fmt.Errorf("unable to prompt for IP address: %w", err)
 	}
-	userName, err = prompt.PromptForInput("Enter username:")
+	userName, err = prompt.PromptForInput("Enter username")
 	if err != nil {
 		return fmt.Errorf("unable to prompt for username: %w", err)
 	}
