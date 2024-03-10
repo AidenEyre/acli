@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `kch` | `2.2.0` | Handle current context not existing in available contexts.
 
 ### Removed
+- `idk` | `1.0.0` | Removed the `idk` command.
 
 ## [1.2.1]
 

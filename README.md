@@ -9,7 +9,6 @@ commands to make your life easier on the command line.
   - [Usage](#usage)
   - [Commands](#commands)
     - [kch](#kch)
-    - [idk](#idk)
   - [Roadmap](#roadmap)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -49,17 +48,6 @@ directly set by adding it after the command (e.g. `acli kch my-cluster`). The
 `-r`/`--resource` flag can be used to open K9s after setting the contents to the
 specified resource. The `-n`/`--namespace` flag can be used to specify the
 namespace used when opening K9s (default namespace: `default`).
-
-### idk
-
-I don't know (idk) is a command that can be run to grab help pages for common
-tips and tricks I use. The command provides an interactive selection promp or the
-page can be chosen by including the page name after the command (e.g.
-`acli idk terminal`).
-
-**Available Pages:**
-- terminal - Terminal help (https://iterm2.com/).
-- rectangle - Help with the recangle app (https://rectangleapp.com/).
 
 ## Roadmap
 
