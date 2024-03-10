@@ -1,4 +1,4 @@
-package connectssh
+package ssh
 
 import (
 	"fmt"
@@ -22,14 +22,19 @@ func Connect(globalConfig connectConfig.Config, serverAlias string) error {
 	server := globalConfig.Connect.Aliases[selectedServerIndex]
 
 	privateKeyPath := fmt.Sprintf("%s/%s", globalConfig.Connect.SSHDir, server.PEMFile)
+	userHost := fmt.Sprintf("%s@%s", server.User, server.IP)
+	var params []string
+	if server.PEMFile != "" {
+		params = append(params, "-i", privateKeyPath)
+	}
+	params = append(params, userHost, "-p")
+	if server.Port != "" {
+		params = append(params, server.Port)
+	} else {
+		params = append(params, "22")
+	}
 
-	cmd := exec.Command("ssh",
-		"-i",
-		privateKeyPath,
-		fmt.Sprintf("%s@%s", server.User, server.IP),
-		"-p",
-		"22",
-	)
+	cmd := exec.Command("ssh", params...)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

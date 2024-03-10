@@ -5,7 +5,7 @@ import (
 
 	"github.com/aideneyre/acli/internal/config"
 	connectConfig "github.com/aideneyre/acli/internal/config/configurator/connect"
-	connectssh "github.com/aideneyre/acli/internal/connect"
+	ssh "github.com/aideneyre/acli/internal/connect"
 
 	"github.com/spf13/cobra"
 )
@@ -42,10 +42,10 @@ func runE(cmd *cobra.Command, args []string) error {
 	}
 
 	if len(args) == 1 {
-		return connectssh.Connect(globalConfig, args[0])
+		return ssh.Connect(globalConfig, args[0])
 	}
 
-	err = connectssh.ConnectInteractive(globalConfig)
+	err = ssh.ConnectInteractive(globalConfig)
 	if err != nil {
 		return fmt.Errorf("unable to connect to server: %w", err)
 	}
