@@ -13,6 +13,7 @@ commands to make your life easier on the command line.
     - [Connect](#connect)
   - [Roadmap](#roadmap)
   - [Versioning](#versioning)
+  - [Distributing](#distributing)
   - [Authors](#authors)
 
 ## Installation
@@ -102,7 +103,6 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 
 ## Roadmap
 
-- [ ] Implement an easy way to distribute this (brew, etc).
 - [ ] Config
   - [ ] Allow users to specify default kubeconfig path to use.
 - [ ] kch
@@ -117,6 +117,10 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 ## Versioning
 
 We use [SemVer](SemVer) for versioning on the root command and each sub-command.
+
+## Distributing
+
+We use [GoReleaser](https://goreleaser.com/) to distribute the CLI.
 
 ## Authors
 
