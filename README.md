@@ -9,7 +9,8 @@ commands to make your life easier on the command line.
   - [Usage](#usage)
   - [Commands](#commands)
     - [kch](#kch)
-    - [idk](#idk)
+    - [Config](#config)
+    - [Connect](#connect)
   - [Roadmap](#roadmap)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -35,8 +36,12 @@ commands to make your life easier on the command line.
 ```
 # Set context with an interactive prompt and open K9s to specified resource/namespace
 acli kch -r pod -n kube-system
-# Get help page with an interactive prompt
-acli idk
+# Configure persistent config for the CLI
+acli config
+# View persistent config for the CLI
+acli config view
+# Connect to a server with SSH and an interactive prompt
+acli connect
 ```
 
 ## Commands
@@ -50,16 +55,43 @@ directly set by adding it after the command (e.g. `acli kch my-cluster`). The
 specified resource. The `-n`/`--namespace` flag can be used to specify the
 namespace used when opening K9s (default namespace: `default`).
 
-### idk
+### Config
 
-I don't know (idk) is a command that can be run to grab help pages for common
-tips and tricks I use. The command provides an interactive selection promp or the
-page can be chosen by including the page name after the command (e.g.
-`acli idk terminal`).
+The config command allows you to define persistent configs for the CLI. The CLI
+will attempt to create the folder at `~/.acli`. If you choose, you can directly
+modify this file rather than using the command (see options below). When
+running the command, you will be given an interactive prompt. If you would like
+to print the existing configs, run `acli config view`.
+```yaml
+# the connect section configures SSH connection settings and aliases for quick
+# access.
+connect:
+  ## Aliases for SSH connections
+  aliases:
+    - ip: "" # IP address of the SSH server, e.g., "192.168.1.127"
+      name: "" # Unique name for this alias, e.g., "rpi"
+      pemfile: "" # Path to PEM file for key authentication, if used
+      port: "" # SSH port, default is "22"
+      user: "" # Username for SSH connection, e.g., "aideneyre"
+  sshdir: "" # Default directory for SSH keys
 
-**Available Pages:**
-- terminal - Terminal help (https://iterm2.com/).
-- rectangle - Help with the recangle app (https://rectangleapp.com/).
+# Configuration for Kubernetes command-line tools and preferences.
+kch:
+  alwaysopenk9s: false # Whether to always open K9s on start (true/false)
+  defaults:
+    namespace: "" # Default namespace, e.g., "argocd"
+    resource: "" # Default resource type, e.g., "service"
+
+```
+
+### Connect
+
+The `connect` command allows you to connect to remote servers using SSH. This
+command relies on set configs through the `config` command. If you just run,
+`acli connect`, you will be presented with an interactive list of the
+configured servers in your config. After choosing one, it will attempt to
+connect. If you know the alias you want to connect to, feel free to tack it on,
+`acli connect <alias>. Pem file is not required for this connection.
 
 ## Roadmap
 

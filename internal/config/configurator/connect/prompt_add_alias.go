@@ -15,7 +15,7 @@ func promptAddNewSSHAlias() error {
 	if err != nil {
 		return fmt.Errorf("unable to prompt for alias name: %w", err)
 	}
-	pemFileName, err = prompt.PromptForInput("Enter PEM file name")
+	pemFileName, err = prompt.PromptForInput("(optional) Enter PEM file name")
 	if err != nil {
 		return fmt.Errorf("unable to prompt for PEM file name: %w", err)
 	}

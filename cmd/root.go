@@ -7,7 +7,6 @@ import (
 
 	cliconfigsetup "github.com/aideneyre/acli/cmd/config"
 	"github.com/aideneyre/acli/cmd/connect"
-	help "github.com/aideneyre/acli/cmd/help"
 	kube "github.com/aideneyre/acli/cmd/kube"
 
 	"github.com/spf13/cobra"
@@ -27,7 +26,6 @@ var RootCmd = &cobra.Command{
 // via the CLI
 func init() {
 	RootCmd.AddCommand(kube.KubeChangeCmd)
-	RootCmd.AddCommand(help.CheatSheet)
 	RootCmd.AddCommand(cliconfigsetup.ConfigCmd)
 	RootCmd.AddCommand(connect.ConnectCmd)
 }
