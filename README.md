@@ -48,7 +48,7 @@ acli connect
 
 ### kch
 
-![kch-demo](https://giphy.com/gifs/5yM9Zl2YAGCUbsouql)
+![kch-demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG91c3JjM2dvY2NlbHEyd3hrdTcxaXZnd3FybWlqdHFscmh6NHFrcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5yM9Zl2YAGCUbsouql/giphy.mp4)
 
 Kube change (kch) is a command that can be run to set the current context. The
 command provides an interactive selection prompt or the context can be
@@ -91,7 +91,7 @@ kch:
 
 ### Connect
 
-![connect-demo](https://giphy.com/gifs/swYUWOADqUfzA1NzNN)
+![connect-demo](https://media.giphy.com/media/swYUWOADqUfzA1NzNN/giphy.mp4)
 
 The `connect` command allows you to connect to remote servers using SSH. This
 command relies on set configs through the `config` command. If you just run,
