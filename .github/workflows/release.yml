@@ -15,35 +15,35 @@ permissions:
   # issues: write
 
 jobs:
-  goreleaser-brew:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: stable
-      # More assembly might be required: Docker logins, GPG, etc.
-      # It all depends on your needs.
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
-        with:
-          # either 'goreleaser' (default) or 'goreleaser-pro'
-          distribution: goreleaser
-          version: latest
-          # args: release --clean
-          args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=chocolatey
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Your GoReleaser Pro key, if you are using the 'goreleaser-pro' distribution
-          # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
+  # goreleaser-brew:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v5
+  #       with:
+  #         go-version: stable
+  #     # More assembly might be required: Docker logins, GPG, etc.
+  #     # It all depends on your needs.
+  #     - name: Run GoReleaser
+  #       uses: goreleaser/goreleaser-action@v5
+  #       with:
+  #         # either 'goreleaser' (default) or 'goreleaser-pro'
+  #         distribution: goreleaser
+  #         version: latest
+  #         # args: release --clean
+  #         args: release --snapshot --skip=publish --clean --skip=announce --skip=sign --skip=chocolatey
+  #       # env:
+  #       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         # Your GoReleaser Pro key, if you are using the 'goreleaser-pro' distribution
+  #         # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
 
   goreleaser-choco:
     name: Release Chocolatey
-    needs: goreleaser-brew
+    # needs: goreleaser-brew
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -54,11 +54,6 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
-      - name: Install Chocolatey
-        run: |
-          Set-ExecutionPolicy Bypass -Scope Process -Force
-          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-          Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       - name: Run GoReleaser for Chocolatey
         uses: goreleaser/goreleaser-action@v5
         with:
