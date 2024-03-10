@@ -8,7 +8,7 @@ import (
 )
 
 func promptAddNewSSHAlias() error {
-	var aliasName, pemFileName, ipAddress, userName string
+	var aliasName, pemFileName, ipAddress, port, userName string
 	var err error
 
 	aliasName, err = prompt.PromptForInput("Enter alias name")
@@ -23,6 +23,10 @@ func promptAddNewSSHAlias() error {
 	if err != nil {
 		return fmt.Errorf("unable to prompt for IP address: %w", err)
 	}
+	port, err = prompt.PromptForInputWithDefault("Enter port number", "22")
+	if err != nil {
+		return fmt.Errorf("unable to prompt for port number: %w", err)
+	}
 	userName, err = prompt.PromptForInput("Enter username")
 	if err != nil {
 		return fmt.Errorf("unable to prompt for username: %w", err)
@@ -32,6 +36,7 @@ func promptAddNewSSHAlias() error {
 		Name:    aliasName,
 		PEMFile: pemFileName,
 		IP:      ipAddress,
+		Port:    port,
 		User:    userName,
 	}
 

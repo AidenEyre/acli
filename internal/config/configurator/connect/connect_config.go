@@ -26,6 +26,7 @@ type SSHAlias struct {
 	Name    string `yaml:"name"`
 	PEMFile string `yaml:"pemfile"`
 	IP      string `yaml:"ip"`
+	Port    string `yaml:"port"`
 	User    string `yaml:"user"`
 }
 

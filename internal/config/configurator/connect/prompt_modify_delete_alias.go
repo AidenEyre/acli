@@ -73,6 +73,10 @@ func modifyAlias(index int) error {
 	if err != nil {
 		return err
 	}
+	newPort, err := prompt.PromptForInputWithDefault("Enter new port number (leave blank to keep current)", alias.Port)
+	if err != nil {
+		return err
+	}
 	newUser, err := prompt.PromptForInputWithDefault("Enter new username (leave blank to keep current)", alias.User)
 	if err != nil {
 		return err
@@ -86,6 +90,9 @@ func modifyAlias(index int) error {
 	}
 	if newIP != "" {
 		alias.IP = newIP
+	}
+	if newPort != "" {
+		alias.Port = newPort
 	}
 	if newUser != "" {
 		alias.User = newUser
