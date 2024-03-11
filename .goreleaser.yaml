@@ -58,14 +58,14 @@ changelog:
       - "^test:"
 
 brews:
- - name: acli
-   description: CLI tool to help with daily DevOps tasks
-   homepage: https://github.com/AidenEyre/acli
-   license: MIT
-   folder: Formula
-   repository:
-    owner: AidenEyre
-    name: homebrew-aideneyre
+  - name: acli
+    description: CLI tool to help with daily DevOps tasks
+    homepage: https://github.com/AidenEyre/acli
+    license: MIT
+    folder: Formula
+    repository:
+      owner: AidenEyre
+      name: homebrew-aideneyre
 
 chocolateys:
   - name: acli
