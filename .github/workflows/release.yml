@@ -12,36 +12,36 @@ permissions:
   contents: write
 
 jobs:
-  goreleaser-brew:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: stable
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
-        with:
-          distribution: goreleaser
-          version: latest
-          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=chocolatey' || 'release --clean --skip=announce --skip=chocolatey' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+  # goreleaser-brew:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v5
+  #       with:
+  #         go-version: stable
+  #     - name: Import GPG key
+  #       id: import_gpg
+  #       uses: crazy-max/ghaction-import-gpg@v6
+  #       with:
+  #         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+  #         passphrase: ${{ secrets.PASSPHRASE }}
+  #     - name: Run GoReleaser
+  #       uses: goreleaser/goreleaser-action@v5
+  #       with:
+  #         distribution: goreleaser
+  #         version: latest
+  #         args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=chocolatey' || 'release --clean --skip=announce --skip=chocolatey' }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+  #         GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
 
   goreleaser-choco:
     name: Release Chocolatey
-    needs: goreleaser-brew
+    # needs: goreleaser-brew
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -83,7 +83,8 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=homebrew' || 'release --clean --skip=announce --skip=homebrew' }}
+          # args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce --skip=homebrew' || 'release --clean --skip=announce --skip=homebrew' }}
+          args: ${{ github.event_name == 'pull_request' && 'release --snapshot --clean --skip=announce || 'release --clean --skip=announce }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
