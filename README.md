@@ -132,7 +132,6 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
   - [ ] Refactor kube package to better handle unit tests.
 - [ ] Create pipelines
   - [ ] Lint, and, enforce standards, etc. on MRs.
-  - [ ] On tags, I want to build the binary and store it in the package registry.
 
 ## Versioning
 
@@ -142,7 +141,7 @@ We use [SemVer](SemVer) for versioning on the root command and each sub-command.
 
 We use [GoReleaser](https://goreleaser.com/) to distribute the CLI.
 
-Currently deploying packages to: `Homebrew` and `Choclatey`.
+Currently deploying packages to: `Homebrew` and `Chocolatey`.
 
 ## Authors
 

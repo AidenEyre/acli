@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0]
 
 ### Added
-- `acli` | `1.4.0` | Using GoReleaser to distribute CLI in a user-friendly way.
+- `acli` | `1.4.0` | Using GoReleaser to distribute CLI in a user-friendly way
+  (Homebrew and Chocolatey).
 
 ### Changed
 
