@@ -132,6 +132,7 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
   - [ ] Refactor kube package to better handle unit tests.
 - [ ] Create pipelines
   - [ ] Lint, and, enforce standards, etc. on MRs.
+  - [ ] Implement a changelog tool for better release notes automation.
 
 ## Versioning
 
