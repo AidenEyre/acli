@@ -137,6 +137,7 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 - [ ] When adding ssh aliases, sometimes I see the question pop up twice. For example, Enter
       Port Number appearing over Enter Username.
 - [ ] Add bell skipper to modify connect config.
+- [ ] See if I can better handle cmd+k while prompt open.
 
 ## Versioning
 
