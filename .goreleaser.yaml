@@ -78,3 +78,4 @@ chocolateys:
     release_notes: https://github.com/AidenEyre/acli/releases/tag/v{{ .Version }}
     owners: Aiden Eyre
     authors: Aiden Eyre
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
