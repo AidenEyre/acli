@@ -6,6 +6,9 @@ commands to make your life easier on the command line.
 **On This Page**
 - [Aiden CLI](#aiden-cli)
   - [Installation](#installation)
+    - [Homebrew](#homebrew)
+    - [Chocolatey](#chocolatey)
+    - [Golang](#golang)
   - [Usage](#usage)
   - [Commands](#commands)
     - [kch](#kch)
@@ -17,6 +20,23 @@ commands to make your life easier on the command line.
   - [Authors](#authors)
 
 ## Installation
+
+### Homebrew
+
+```
+brew tap AidenEyre/homebrew-aideneyre
+brew install acli
+```
+
+### Chocolatey
+
+> :memo: PENDING REVIEW - not yet available.
+
+```
+choco install acli --version=1.4.0
+```
+
+### Golang
 
 > :memo: Ensure that Golang is installed on your machine.
 
