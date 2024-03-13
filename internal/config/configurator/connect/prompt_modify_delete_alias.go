@@ -31,8 +31,9 @@ func promptModifyDeleteSSHAlias() error {
 	fmt.Printf("Selected alias: %s\n", selectedAlias.Name)
 
 	actionPrompt := promptui.Select{
-		Label: "Would you like to modify or delete this alias?",
-		Items: []string{"Modify", "Delete", "Cancel"},
+		Label:  "Would you like to modify or delete this alias?",
+		Items:  []string{"Modify", "Delete", "Cancel"},
+		Stdout: &prompt.BellSkipper{},
 	}
 	_, action, err := actionPrompt.Run()
 	if err != nil {

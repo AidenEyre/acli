@@ -71,11 +71,13 @@ chocolateys:
   - name: acli
     title: Aiden CLI
     description: CLI tool to help with daily DevOps tasks
+    summary: CLI tool to help with daily DevOps tasks
     project_url: https://github.com/AidenEyre/acli
-    project_source_url: https://github.com/AidenEyre/acli
     license_url: https://github.com/AidenEyre/acli/blob/main/LICENSE
     docs_url: https://github.com/AidenEyre/acli/blob/main/README.md
     release_notes: https://github.com/AidenEyre/acli/releases/tag/v{{ .Version }}
     owners: Aiden Eyre
     authors: Aiden Eyre
+    tags: "kubernetes kubectl ssh cli productivity tool"
+    icon_url: https://github.com/AidenEyre/acli/blob/main/assets/acli-logo-no-background.png
     api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
