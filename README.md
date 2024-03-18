@@ -133,6 +133,11 @@ connect. If you know the alias you want to connect to, feel free to tack it on,
 - [ ] Create pipelines
   - [ ] Lint, and, enforce standards, etc. on MRs.
   - [ ] Implement a changelog tool for better release notes automation.
+- [ ] Allow keybinds to work in the prompt (opt+backspace, etc.) if possible.
+- [ ] When adding ssh aliases, sometimes I see the question pop up twice. For example, Enter
+      Port Number appearing over Enter Username.
+- [ ] Add bell skipper to modify connect config.
+- [ ] See if I can better handle cmd+k while prompt open.
 
 ## Versioning
 
