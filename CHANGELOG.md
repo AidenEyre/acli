@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Subcommand`| `Version` | `Explanation...`
 ```
 
+## [1.4.1]
+
+### Added
+- N/A
+
+### Changed
+- N/A
+
+### Fixed
+- `config` | `0.1.1` | Silence dings when scrolling through alias modification selection.
+
+### Removed
+- N/A
+
 ## [1.4.0]
 
 ### Added
@@ -18,12 +32,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (Homebrew and Chocolatey).
 
 ### Changed
+- N/A
 
 ### Fixed
 - `kch` | `2.2.1` | Fully exit program if no kubeconfig is found.
 - `kch` | `2.2.1` | Gracefully handle K9s not being installed.
 
 ### Removed
+- N/A
 
 ## [1.3.0]
 
@@ -54,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.1]
 
 ### Added
+- N/A
 
 ### Changed
 - `kch` | `2.1.0` | Improved output when there are no context configured.
@@ -63,3 +80,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `~/.kube/config` when setting context.
 
 ### Removed
+- N/A

@@ -20,8 +20,9 @@ func promptModifyDeleteSSHAlias() error {
 	}
 
 	selectPrompt := promptui.Select{
-		Label: "Select an alias to modify or delete",
-		Items: aliasNames,
+		Label:  "Select an alias to modify or delete",
+		Items:  aliasNames,
+		Stdout: &prompt.BellSkipper{},
 	}
 	aliasInex, _, err := selectPrompt.Run()
 	if err != nil {
