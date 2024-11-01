@@ -1,0 +1,58 @@
+connect:
+  aliases:
+  - ip: 10.0.0.1
+    name: server-1
+    pemfile: ""
+    port: "22"
+    user: admin
+  - ip: 10.0.0.2
+    name: server-2
+    pemfile: "key-server-2.pem"
+    port: "22"
+    user: devuser
+  - ip: 10.0.0.3
+    name: server-3
+    pemfile: ""
+    port: "22"
+    user: deploy
+  - ip: 10.0.0.4
+    name: server-4
+    pemfile: "access-server-4.pem"
+    port: "22"
+    user: sysadmin
+  - ip: 10.0.0.5
+    name: server-5
+    pemfile: ""
+    port: "22"
+    user: user5
+  - ip: 10.0.0.6
+    name: server-6
+    pemfile: "server-6.pem"
+    port: "22"
+    user: developer
+  - ip: 10.0.0.7
+    name: server-7
+    pemfile: ""
+    port: "22"
+    user: ops
+  - ip: 10.0.0.8
+    name: server-8
+    pemfile: "id_rsa_server8.pem"
+    port: "22"
+    user: engineer
+  - ip: 10.0.0.9
+    name: server-9
+    pemfile: ""
+    port: "22"
+    user: tester
+  - ip: 10.0.0.10
+    name: server-10
+    pemfile: "server-10-key.pem"
+    port: "22"
+    user: analyst
+  sshdir: ""
+kch:
+  alwaysopenk9s: true
+  defaults:
+    namespace: default
+    resource: pod
