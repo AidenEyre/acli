@@ -26,7 +26,7 @@ acli config
 # View the existing configuration
 acli config view
 		`,
-		Version:      "0.1.0",
+		Version:      "0.1.1",
 		RunE:         runE,
 		SilenceUsage: true,
 	}
